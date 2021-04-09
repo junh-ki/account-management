@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jun.cashdeposit.entities.User;
-import com.jun.cashdeposit.repos.UserRepository;
+import com.jun.cashdeposit.services.UserService;
 
 @Controller
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@RequestMapping("/showReg")
     public String showRegistrationPage() {
@@ -29,19 +29,19 @@ public class UserController {
     
     @RequestMapping(value="/registerUser", method=RequestMethod.POST)
     public String register(@ModelAttribute("user") User user) {
-        userRepository.save(user);
+    	userService.saveUser(user);
         return "login/login";
     }
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap modelMap) {
-        User user = userRepository.findByEmail(email);
+        User user = userService.findUserByEmail(email);
         if (user.getPassword().equals(password)) {
+        	modelMap.addAttribute("user", user);
             return "userhome";
-        } else {
-            modelMap.addAttribute("msg", "Invalid user name or password. Please try again.");
         }
+        modelMap.addAttribute("msg", "Invalid user name or password. Please try again.");
         return "login/login";
     }
-	
+    
 }

@@ -17,6 +17,7 @@ CREATE TABLE account (
   currency VARCHAR(10),
   balance DECIMAL,
   holder_id BIGINT,
+  PRIMARY KEY (id),
   FOREIGN KEY (holder_id) REFERENCES user(id)
 )
 
@@ -24,6 +25,7 @@ CREATE TABLE deposit (
   id BIGINT NOT NULL AUTO_INCREMENT,
   amount DECIMAL,
   account_id BIGINT,
+  PRIMARY KEY (id),
   FOREIGN KEY (account_id) REFERENCES account(id)
 )
 
@@ -31,9 +33,10 @@ CREATE TABLE transaction (
   id BIGINT NOT NULL AUTO_INCREMENT,
   amount DECIMAL,
   currency VARCHAR(10),
+  PRIMARY KEY (id),
   sender_id BIGINT,
   receiver_id BIGINT,
-  FOREIGN KEY (sender_id) REFERENCES account(id)
+  FOREIGN KEY (sender_id) REFERENCES account(id),
   FOREIGN KEY (receiver_id) REFERENCES account(id)
 )
 

@@ -21,15 +21,15 @@ public class DepositServiceImpl implements DepositService {
 	@Override
 	public Deposit depositCash(DepositRequest request) {
 		Long accountId = request.getAccountId();
-		Account account = accountRepository.findById(accountId).get();
-		Double amount = request.getAmount();
 		
 		//TODO: REST Controller for findAccount and updateAccount 
 		// or updateAccount?
 		// account.setBalance();
+		Account account = accountRepository.findById(accountId).get();
+		Double amount = request.getAmount();
 		
 		Deposit deposit = new Deposit();
-		deposit.setAccount(account);
+		deposit.setAccountId(accountId);
 		deposit.setAmount(amount);
 		
 		return depositRepository.save(deposit);

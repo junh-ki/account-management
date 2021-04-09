@@ -1,18 +1,16 @@
 package com.jun.cashdeposit.dto;
 
-import com.jun.cashdeposit.entities.Account;
-
 public class DepositRequest {
 
-	private Account account;
+	private Long accountId;
 	private Double amount;
 
-	public Account getAccount() {
-		return account;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 	public Double getAmount() {

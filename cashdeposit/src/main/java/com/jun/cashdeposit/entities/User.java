@@ -9,7 +9,7 @@ public class User extends AbstractEntity {
 	private String lastName;
 	private String email;
 	private String password;
-	private Account account;
+	private Long accountId;
 	// private boolean hasAccount;
 
 	public String getFirstName() {
@@ -44,12 +44,12 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 }

@@ -5,16 +5,16 @@ import javax.persistence.Entity;
 @Entity
 public class Account extends AbstractEntity {
 	
-	private String holderName;
+	private Long holderId;
 	private String currency;
 	private Double balance;
-	
-	public String getHolderName() {
-		return holderName;
+
+	public Long getHolderId() {
+		return holderId;
 	}
 
-	public void setHolderName(String holderName) {
-		this.holderName = holderName;
+	public void setHolderId(Long holderId) {
+		this.holderId = holderId;
 	}
 
 	public String getCurrency() {

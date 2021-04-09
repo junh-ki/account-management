@@ -5,15 +5,15 @@ import javax.persistence.Entity;
 @Entity
 public class Deposit extends AbstractEntity {
 	
-	private Account account;
+	private Long accountId;
 	private Double amount;
 
-	public Account getAccount() {
-		return account;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 	public Double getAmount() {

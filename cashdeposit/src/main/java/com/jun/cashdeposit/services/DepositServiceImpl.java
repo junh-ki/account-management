@@ -7,12 +7,16 @@ import com.jun.cashdeposit.dto.DepositRequest;
 import com.jun.cashdeposit.entities.Account;
 import com.jun.cashdeposit.entities.Deposit;
 import com.jun.cashdeposit.repos.AccountRepository;
+import com.jun.cashdeposit.repos.DepositRepository;
 
 @Service
 public class DepositServiceImpl implements DepositService {
 
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+	DepositRepository depositRepository;
 	
 	@Override
 	public Deposit depositCash(DepositRequest request) {
@@ -28,7 +32,7 @@ public class DepositServiceImpl implements DepositService {
 		deposit.setAccount(account);
 		deposit.setAmount(amount);
 		
-		return deposit;
+		return depositRepository.save(deposit);
 	}
 
 }

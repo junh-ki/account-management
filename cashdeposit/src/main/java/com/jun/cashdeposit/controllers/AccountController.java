@@ -36,7 +36,6 @@ public class AccountController {
 	@RequestMapping("/displayAccs")
 	public String displayAccounts(@RequestParam("holderId") Long id, ModelMap modelMap) {
 		List<Account> accounts = accountService.getAccountsOfUser(id);
-		System.out.println("JunTest: " + accounts.size());
 		modelMap.addAttribute("accounts", accounts);
 		return "displayAccounts";
 	}

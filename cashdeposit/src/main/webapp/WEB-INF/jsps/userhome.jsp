@@ -22,7 +22,7 @@ Click here to create a new account
 <form action="displayAccs" method="post"/>
 <pre>
 Click here to display your accounts
-<input type="hidden" name="userId" value="${user.id}"/>
+<input type="hidden" name="holderId" value="${user.id}"/>
 <input type="submit" value="Display"/>
 
 </body>

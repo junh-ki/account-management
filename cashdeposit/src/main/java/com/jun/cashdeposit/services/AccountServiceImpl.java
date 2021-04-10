@@ -20,6 +20,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
+	public Account getAccountById(Long accountId) {
+		return accountRepository.findById(accountId).get();
+	}
+	
+	@Override
 	public List<Account> getAccountsOfUser(Long userId) {
 		List<Account> accounts = accountRepository.findAccounts(userId);
 		return accounts;

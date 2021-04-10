@@ -1,6 +1,7 @@
 package com.jun.cashdeposit.dto;
 
 public class AccountUpdateRequest {
+	
 	private Long id;
     private Double balance;
 

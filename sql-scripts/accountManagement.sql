@@ -15,7 +15,7 @@ CREATE TABLE user (
 CREATE TABLE account (
   id BIGINT NOT NULL AUTO_INCREMENT,
   currency VARCHAR(10),
-  balance DECIMAL,
+  balance FLOAT(14, 2),
   holder_id BIGINT,
   PRIMARY KEY (id),
   FOREIGN KEY (holder_id) REFERENCES user(id)
@@ -50,4 +50,4 @@ DROP TABLE account
 DROP TABLE deposit
 DROP TABLE transaction
 
-DROP DATABASE reservation
+DROP DATABASE account

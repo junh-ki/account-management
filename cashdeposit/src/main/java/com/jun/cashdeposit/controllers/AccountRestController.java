@@ -23,7 +23,7 @@ public class AccountRestController {
 		return accountRepository.findById(id).get();
 	}
 	
-	@RequestMapping("/reservations")
+	@RequestMapping("/accounts")
 	public Account updateAccount(@RequestBody AccountUpdateRequest request) {
 		Account account = accountRepository.findById(request.getId()).get();
 		account.setBalance(request.getBalance());

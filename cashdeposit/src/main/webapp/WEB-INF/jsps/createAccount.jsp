@@ -14,7 +14,7 @@
 HolderID              : ${holderId}
 Currency              : EUR <input type="radio" name="currency" value="EUR"/>
                         USD <input type="radio" name="currency" value="USD"/>
-Initial Deposit Amount: <input type="text" name="balance"/>
+Initial Deposit Amount: <input type="number" name="balance" step="0.01"/>
 <input type="hidden" name="holderId" value="${holderId}"/>
 <input type="submit" value="save"/>
 </pre>

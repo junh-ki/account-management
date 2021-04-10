@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jun.cashdeposit.dto.AccountUpdateRequest;
 import com.jun.cashdeposit.entities.Account;
-import com.jun.cashdeposit.repos.AccountRepository;
+import com.jun.cashdeposit.services.AccountService;
 
 @RestController
 @CrossOrigin
 public class AccountRestController {
 	
 	@Autowired
-	private AccountRepository accountRepository;
+	private AccountService accountService;
 	
 	@RequestMapping("/accounts/{id}")
-	public Account findAccount(@PathVariable("id") Long id) {
-		return accountRepository.findById(id).get();
+	public Account findAccountById(@PathVariable("id") Long id) {
+		return accountService.getAccountById(id);
 	}
 	
 	@RequestMapping("/accounts")
 	public Account updateAccount(@RequestBody AccountUpdateRequest request) {
-		Account account = accountRepository.findById(request.getId()).get();
+		Account account = accountService.getAccountById(request.getId());
 		account.setBalance(request.getBalance());
-		return accountRepository.save(account);
+		return accountService.saveAccount(account);
 	}
 	
 }

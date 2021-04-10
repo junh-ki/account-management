@@ -13,10 +13,10 @@ import com.jun.cashdeposit.repos.DepositRepository;
 public class DepositServiceImpl implements DepositService {
 
 	@Autowired
-	AccountRepository accountRepository;
+	private AccountRepository accountRepository;
 	
 	@Autowired
-	DepositRepository depositRepository;
+	private DepositRepository depositRepository;
 	
 	@Override
 	public Deposit depositCash(DepositRequest request) {

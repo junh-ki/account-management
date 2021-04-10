@@ -22,7 +22,12 @@ Initial Deposit Amount: <input type="text" name="balance"/>
 
 ${msg}
 
-<a href="displayAccounts">View Accounts</a>
+<form action="displayAccs" method="post">
+<pre>
+<input type="hidden" name="holderId" value="${holderId}"/>
+<input type="submit" value="view accounts"/>
+</pre>
+</form>
 
 </body>
 </html>

@@ -19,7 +19,7 @@ Click here to create a new account
 
 <br/>
 
-<form action="showCreate" method="post"/>
+<form action="displayAccs" method="post"/>
 <pre>
 Click here to display your accounts
 <input type="hidden" name="userId" value="${user.id}"/>

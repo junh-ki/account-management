@@ -12,7 +12,7 @@ import com.jun.cashdeposit.repos.AccountRepository;
 public class AccountServiceImpl implements AccountService {
 	
 	@Autowired
-	AccountRepository accountRepository;
+	private AccountRepository accountRepository;
 	
 	@Override
 	public Account saveAccount(Account account) {
@@ -21,8 +21,8 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	public List<Account> getAccountsOfUser(Long userId) {
-		// TODO: query for this should be defined in a AccountRepository method
-		return null;
+		List<Account> accounts = accountRepository.findAccounts(userId);
+		return accounts;
 	}
 	
 }

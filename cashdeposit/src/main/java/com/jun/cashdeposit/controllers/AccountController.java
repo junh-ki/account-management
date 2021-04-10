@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jun.cashdeposit.entities.Account;
@@ -19,38 +17,28 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
-	
+
 	@RequestMapping("/showCreate")
-    public String createAccount(@RequestParam("userId") Long id, ModelMap modelMap) {
-    	modelMap.addAttribute("holderId", id);
-    	return "createAccount";
-    }
-	
+	public String createAccount(@RequestParam("userId") Long id, ModelMap modelMap) {
+		modelMap.addAttribute("holderId", id);
+		return "createAccount";
+	}
+
 	@RequestMapping("/saveAcc")
-    public String saveAccount(@ModelAttribute("account") Account account, ModelMap modelMap) {
+	public String saveAccount(@ModelAttribute("account") Account account, ModelMap modelMap) {
 		Account accountSaved = accountService.saveAccount(account);
 		String msg = "Account saved with id: " + accountSaved.getId();
-        modelMap.addAttribute("msg", msg);
-        return "createAccount";
-    }
-	/*public String saveAccount(@RequestParam("holderId") String holderId, @RequestParam("currency") String currency, 
-			@RequestParam("balance") String balance, ModelMap modelMap) {
-		System.out.println("Are we cool?");
-		Account account = new Account();
-		account.setHolderId(Long.valueOf(holderId));
-		account.setCurrency(currency);
-		account.setBalance(Double.valueOf(balance));
-		Account accountSaved = accountService.saveAccount(account);
-		String msg = "Account saved with id: " + accountSaved.getId();
-        modelMap.addAttribute("msg", msg);
-        return "createAccount";
-    }*/
-    
-    @RequestMapping("/displayLocations")
-    public String displayAccounts(@RequestParam("userId") Long id, ModelMap modelMap) {
-    	List<Account> accounts = accountService.getAccountsOfUser(id);
-    	modelMap.addAttribute("accounts", accounts);
-        return "displayAccounts";
-    }
-	
+		modelMap.addAttribute("msg", msg);
+		modelMap.addAttribute("holderId", accountSaved.getHolderId());
+		return "createAccount";
+	}
+
+	@RequestMapping("/displayAccs")
+	public String displayAccounts(@RequestParam("holderId") Long id, ModelMap modelMap) {
+		List<Account> accounts = accountService.getAccountsOfUser(id);
+		System.out.println("JunTest: " + accounts.size());
+		modelMap.addAttribute("accounts", accounts);
+		return "displayAccounts";
+	}
+
 }

@@ -8,7 +8,7 @@ public class Account extends AbstractEntity {
 	private Long holderId;
 	private String currency;
 	private Double balance;
-
+	
 	public Long getHolderId() {
 		return holderId;
 	}

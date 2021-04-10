@@ -8,18 +8,20 @@
 </head>
 <body>
 
-<h2>Create a new account:</h2>
-
 <form action="saveAcc" method="post">
 <pre>
-UserId                : <input type="text" value="${userId}" readonly="readonly"/>
-Currency              : EUR <input type="radio" name="currency" value="EUR"/> 
+<h2>Create a new account:</h2>
+HolderID              : ${holderId}
+Currency              : EUR <input type="radio" name="currency" value="EUR"/>
                         USD <input type="radio" name="currency" value="USD"/>
 Initial Deposit Amount: <input type="text" name="balance"/>
-<input type="submit" value="save" />
+<input type="hidden" name="holderId" value="${holderId}"/>
+<input type="submit" value="save"/>
 </pre>
 </form>
+
 ${msg}
+
 <a href="displayAccounts">View Accounts</a>
 
 </body>

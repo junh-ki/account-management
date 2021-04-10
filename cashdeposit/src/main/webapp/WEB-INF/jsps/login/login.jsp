@@ -12,7 +12,7 @@
 <form action="login" method="post">
 <pre>
 User Name: <input type="text" name="email"/>
-Password: <input type="password" name="password"/>
+Password : <input type="password" name="password"/>
 <input type="submit" value="login"/>
 ${msg}
 </pre>

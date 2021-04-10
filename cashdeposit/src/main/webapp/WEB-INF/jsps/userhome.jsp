@@ -8,8 +8,22 @@
 </head>
 <body>
 <h2>Welcome ${user.firstName}!</h2>
-<input type="hidden" name="userId" value="${user.id}">
-Click here to create a new account - <a href="showCreate">Create</a><br/>
-Click here to display your accounts - <a href="displayAccs">Display</a>
+
+<form action="showCreate" method="post"/>
+<pre>
+Click here to create a new account
+<input type="hidden" name="userId" value="${user.id}"/>
+<input type="submit" value="Create"/>
+</pre>
+</form>
+
+<br/>
+
+<form action="showCreate" method="post"/>
+<pre>
+Click here to display your accounts
+<input type="hidden" name="userId" value="${user.id}"/>
+<input type="submit" value="Display"/>
+
 </body>
 </html>

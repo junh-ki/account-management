@@ -22,8 +22,8 @@ Account Balance : ${account.balance}<br/>
 Deposit Amount:<input type="number" name="amount" step="0.01"/>
 <input type="hidden" name="accountId" value="${account.id}"/>
 <input type="submit" value="deposit"/>
-</pre>
 </form>
+</pre>
 
 </body>
 </html>

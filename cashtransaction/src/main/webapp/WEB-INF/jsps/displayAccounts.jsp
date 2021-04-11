@@ -25,7 +25,7 @@
 <td>${account.currency}</td>
 <td>${account.balance}</td>
 <td>${account.holderId}</td>
-<td><a href="showDeposit?accountId=${account.id}">Deposit</a></td>
+<td><a href="showTransaction?accountId=${account.id}">Transaction</a></td>
 </tr>
 </c:forEach>
 

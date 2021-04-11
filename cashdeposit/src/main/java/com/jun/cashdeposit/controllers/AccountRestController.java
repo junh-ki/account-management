@@ -28,7 +28,6 @@ public class AccountRestController {
 	
 	@GetMapping("/accounts")
 	public List<Account> getAllAccounts() {
-		// TODO: MAKE A METHOD THAT RETREIVES ALL DATA
 		List<Account> accounts = accountService.getAllAccounts();
 		return accounts;
 	}

@@ -8,6 +8,7 @@ public interface AccountService {
 
 	public Account saveAccount(Account account);
 	public Account getAccountById(Long accountId);
+	public List<Account> getAllAccounts();
 	public List<Account> getAccountsOfUser(Long userId);
 	
 }

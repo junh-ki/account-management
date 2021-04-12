@@ -12,8 +12,9 @@ services:
     volumes:
       - mysql-storage:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=${MYSQL_DB_NAME}
+      - MYSQL_ROOT_USER=${MYSQL_USERNAME}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PW}
+      - MYSQL_DATABASE=${MYSQL_DB_NAME}
 
   restservice:
     image: mrki102/restservice-account-management
@@ -23,8 +24,10 @@ services:
       - "8080:8080"
     networks:
       - monitor_network
-    volumes:
-      - ${RESTSERVICE_CONF_LOC}:/config/
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_ROOT_PW}
     depends_on:
       - mysql
 
@@ -36,8 +39,6 @@ services:
       - "7070:7070"
     networks:
       - monitor_network
-    volumes:
-      - ${CASHDEPOSIT_CONF_LOC}:/config/
     depends_on:
       - restservice
 
@@ -49,8 +50,6 @@ services:
       - "9090:9090"
     networks:
       - monitor_network
-    volumes:
-      - ${CASHTRANSACTION_CONF_LOC}:/config/
     depends_on:
       - restservice
 

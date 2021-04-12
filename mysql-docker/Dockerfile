@@ -1,18 +1,10 @@
-FROM mysql
-MAINTAINER  junh-ki kijoonh91@gmail.com
+FROM mysql:5.7.33
 
-# Copy the database schema to the /data directory
-ADD files/run_db.sh files/init_db.sh files/account_schema.sql /tmp/
+MAINTAINER junh-ki kijoonh91@gmail.com
 
-# init_db will create the default
-# database from account_schema.sql, then
-# stop mysqld, and finally copy the /var/lib/mysql directory
-# to default_mysql_db.tar.gz
-RUN ["chmod", "+x", "/tmp/init_db.sh"]
+ENV MYSQL_DATABASE=account \
+    MYSQL_ROOT_PASSWORD=admin123
 
-# run_db starts mysqld, but first it checks
-# to see if the /var/lib/mysql directory is empty, if
-# it is it is seeded with default_mysql_db.tar.gz before
-# the mysql is fired up
+ADD account_schema.sql /docker-entrypoint-initdb.d
 
-ENTRYPOINT "/tmp/run_db.sh"
+EXPOSE 3306

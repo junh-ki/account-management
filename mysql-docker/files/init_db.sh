@@ -23,7 +23,7 @@ done
 mysql -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY '' WITH GRANT OPTION"
 
 # create the default database from the ADDed file.
-mysql < /tmp/epcis_schema.sql
+mysql < /tmp/account_schema.sql
 
 # Tell the MySQL daemon to shutdown.
 mysqladmin shutdown

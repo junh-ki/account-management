@@ -24,3 +24,14 @@ $ docker build -t ${DOCKER_HUB_USERNAME}/mysql-account-management .
 ~~~
 $ docker push ${DOCKER_HUB_USERNAME}/mysql-account-management
 ~~~
+~~~
+$ docker pull ${DOCKER_HUB_USERNAME}/mysql-account-management
+~~~
+~~~
+$ docker run -p 3306:3306 -d -t ${DOCKER_HUB_USERNAME}/mysql-account-management
+~~~
+
+* You need to empty port 3306 to do this. If MySQL is already up and running locally, try this:
+~~~
+$ sudo service mysql stop
+~~~

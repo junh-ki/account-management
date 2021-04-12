@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mrki102/mysql-account-management
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - monitor_network
+    volumes:
+      - mysql-storage:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DB_NAME}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PW}
+
+  restservice:
+    image: mrki102/restservice-account-management
+    container_name: restservice
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - monitor_network
+    volumes:
+      - ${RESTSERVICE_CONF_LOC}:/config/
+    depends_on:
+      - mysql
+
+  cashdeposit:
+    image: mrki102/cashdeposit-account-management
+    container_name: cashdeposit
+    restart: always
+    ports:
+      - "7070:7070"
+    networks:
+      - monitor_network
+    volumes:
+      - ${CASHDEPOSIT_CONF_LOC}:/config/
+    depends_on:
+      - restservice
+
+  cashtransaction:
+    image: mrki102/cashtransaction-account-management
+    container_name: cashtransaction
+    restart: always
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor_network
+    volumes:
+      - ${CASHTRANSACTION_CONF_LOC}:/config/
+    depends_on:
+      - restservice
+
+networks:
+  monitor_network:
+
+volumes:
+  mysql-storage:

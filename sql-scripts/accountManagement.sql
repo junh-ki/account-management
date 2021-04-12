@@ -1,6 +1,6 @@
-CREATE DATABASE account
+CREATE DATABASE account;
 
-USE account
+USE account;
 
 CREATE TABLE user (
   id BIGINT NOT NULL AUTO_INCREMENT,
@@ -10,7 +10,7 @@ CREATE TABLE user (
   password VARCHAR(50), 
   PRIMARY KEY (id),
   UNIQUE KEY (email)
-)
+);
 
 CREATE TABLE account (
   id BIGINT NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE account (
   holder_id BIGINT,
   PRIMARY KEY (id),
   FOREIGN KEY (holder_id) REFERENCES user(id)
-)
+);
 
 CREATE TABLE deposit (
   id BIGINT NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE deposit (
   account_id BIGINT,
   PRIMARY KEY (id),
   FOREIGN KEY (account_id) REFERENCES account(id)
-)
+);
 
 CREATE TABLE transaction (
   id BIGINT NOT NULL AUTO_INCREMENT,
@@ -40,7 +40,7 @@ CREATE TABLE transaction (
   recipient_account_id BIGINT,
   FOREIGN KEY (sender_account_id) REFERENCES account(id),
   FOREIGN KEY (recipient_account_id) REFERENCES account(id)
-)
+);
 
 SELECT * FROM user
 SELECT * FROM account

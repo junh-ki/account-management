@@ -8,7 +8,7 @@ import com.jun.cashtransaction.integration.dto.Transaction;
 @Component
 public class TransactionRestClientImpl implements TransactionRestClient {
 	
-	private static final String TRANSACTION_REST_URL = "http://localhost:8080/cashdeposit/transactions/";
+	private static final String TRANSACTION_REST_URL = "http://localhost:8080/restservice/transactions/";
 	
 	@Override
 	public Transaction saveTransaction(Transaction transaction) {

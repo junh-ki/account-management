@@ -1,4 +1,4 @@
-package com.jun.cashtransaction.integration;
+package com.jun.cashdeposit.integration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.jun.cashtransaction.integration.dto.Account;
-import com.jun.cashtransaction.integration.dto.AccountUpdateRequest;
+import com.jun.cashdeposit.integration.dto.Account;
+import com.jun.cashdeposit.integration.dto.AccountUpdateRequest;
 
 @Component
 public class AccountRestClientImpl implements AccountRestClient {
@@ -35,6 +35,13 @@ public class AccountRestClientImpl implements AccountRestClient {
 			}
 		}
 		return accounts;
+	}
+	
+	@Override
+	public Account saveAccount(Account account) {
+		RestTemplate restTemplate = new RestTemplate();
+		Account savedAccount = restTemplate.postForObject(ACCOUNT_REST_URL + "save", account, Account.class);
+		return savedAccount;
 	}
 	
 	@Override

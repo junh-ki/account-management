@@ -6,35 +6,42 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jun.cashdeposit.dto.DepositRequest;
-import com.jun.cashdeposit.entities.Account;
-import com.jun.cashdeposit.entities.Deposit;
-import com.jun.cashdeposit.services.AccountService;
-import com.jun.cashdeposit.services.DepositService;
+import com.jun.cashdeposit.integration.AccountRestClient;
+import com.jun.cashdeposit.integration.DepositRestClient;
+import com.jun.cashdeposit.integration.dto.Account;
+import com.jun.cashdeposit.integration.dto.AccountUpdateRequest;
+import com.jun.cashdeposit.integration.dto.Deposit;
 
 @Controller
 public class DepositController {
 	
 	@Autowired
-	private AccountService accountService;
+	private AccountRestClient accountRestClient;
 	
 	@Autowired
-	private DepositService depositService;
+	private DepositRestClient depositRestClient;
 	
 	@RequestMapping("/showDeposit")
     public String showCompleteReservation(@RequestParam("accountId") Long accountId, ModelMap modelMap) {
-		Account account = accountService.getAccountById(accountId);
+		Account account = accountRestClient.findAccountById(accountId);
         modelMap.addAttribute("account", account);
         return "completeDeposit";
     }
 	
 	@RequestMapping("/completeDeposit")
 	public String completeDeposit(@RequestParam("accountId") Long accountId, @RequestParam("amount") Double amount, ModelMap modelMap) {
-		DepositRequest request = new DepositRequest();
-		request.setAccountId(accountId);
-		request.setAmount(amount);
-		Deposit deposit = depositService.depositCash(request);
-		modelMap.addAttribute("msg", "Deposit created successfully and the id is " + deposit.getId());
+		Deposit deposit = new Deposit();
+		deposit.setAccountId(accountId);
+		deposit.setAmount(amount);
+		Account account = accountRestClient.findAccountById(accountId);
+		Double newBalance = account.getBalance() + amount;
+		// Renew balance & Update account with the renewed balance
+		AccountUpdateRequest accountUpdateRequest = new AccountUpdateRequest();
+		accountUpdateRequest.setId(accountId);
+		accountUpdateRequest.setBalance(newBalance);
+		accountRestClient.updateAccount(accountUpdateRequest);
+		Deposit savedDeposit = depositRestClient.saveDeposit(deposit);
+		modelMap.addAttribute("msg", "Deposit created successfully and the id is " + savedDeposit.getId());
         return "depositConfirmation";
 	}
 	

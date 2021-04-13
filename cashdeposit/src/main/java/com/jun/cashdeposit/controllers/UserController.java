@@ -19,18 +19,18 @@ public class UserController {
 	
 	@RequestMapping("/showReg")
     public String showRegistrationPage() {
-        return "login/registerUser";
+        return "registerUser";
     }
     
     @RequestMapping("/showLogin")
     public String showLoginPage() {
-        return "login/login";
+        return "login";
     }
     
     @RequestMapping(value="/registerUser", method=RequestMethod.POST)
     public String register(@ModelAttribute("user") User user) {
     	userRestClient.saveUser(user);
-        return "login/login";
+        return "login";
     }
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -41,7 +41,7 @@ public class UserController {
             return "userhome";
         }
         modelMap.addAttribute("msg", "Invalid user name or password. Please try again.");
-        return "login/login";
+        return "login";
     }
     
 }

@@ -9,7 +9,7 @@ These services include: `mysql`, `restservice`, `cashdeposit`, and `cashtransact
 
 ## Step 1 
 
-Make sure that ports for `mysql`, `restservice`, `cashdeposit`, and `cashtransaction` are available. This includes: 3306(`mysql`), 8080(`restservice`), 7070(`cashdeposit`), and 9090(`cashtransaction`).
+Make sure that ports for `mysql`, `restservice`, `cashdeposit`, and `cashtransaction` are available. This includes: `3306`(`mysql`), `8080`(`restservice`), `7070`(`cashdeposit`), and `9090`(`cashtransaction`).
 
 ## Step 2
 

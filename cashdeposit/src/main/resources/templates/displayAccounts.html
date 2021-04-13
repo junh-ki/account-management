@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Display Accounts</title>
+</head>
+<body>
+
+<h2>Your Accounts:</h2>
+<table>
+
+<tr>
+<th>AccountID</th>
+<th>Currency</th>
+<th>Balance</th>
+<th>HolderID</th>
+</tr>
+
+<tr th:each="account:${accounts}">
+<td th:text="${account.id}"></td>
+<td th:text="${account.currency}"></td>
+<td th:text="${account.balance}"></td>
+<td th:text="${account.holderId}"></td>
+
+<td><a th:href="@{'showDeposit?accountId='+${account.id}}">Deposit</a></td>
+</tr>
+
+</table>
+</body>
+</html>

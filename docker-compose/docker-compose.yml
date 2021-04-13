@@ -40,7 +40,7 @@ services:
     networks:
       - monitor_network
     volumes:
-      - ${DEPOSIT_PROPERTIES_LOCATION}=/config/
+      - ${DEPOSIT_PROPERTIES_LOCATION}:/config/
     depends_on:
       - restservice
 
@@ -53,7 +53,7 @@ services:
     networks:
       - monitor_network
     volumes:
-      - ${TRANSACTION_PROPERTIES_LOCATION}=/config/
+      - ${TRANSACTION_PROPERTIES_LOCATION}:/config/
     depends_on:
       - restservice
 

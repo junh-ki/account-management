@@ -10,36 +10,26 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jun.cashdeposit.integration.dto.Account;
 import com.jun.cashdeposit.integration.dto.AccountUpdateRequest;
-import com.jun.cashdeposit.properties.MyConfigs;
 
 @Component
 public class AccountRestClientImpl implements AccountRestClient {
 
 	@Autowired
-	private MyConfigs myConfigs;
-	private static final String ACCOUNT_REST_URL = "http://localhost:8080/restservice/accounts/";
+	private RestServiceUrl restServiceUrl;
 	
 	@Override
 	public Account findAccountById(Long id) {
-		Account account;
+		String ACCOUNT_REST_URL = restServiceUrl.getRestServiceUrl() + "accounts/";
 		RestTemplate restTemplate = new RestTemplate();
-		if (myConfigs.getREST_URL_ACCOUNT() != null) {
-			account = restTemplate.getForObject(myConfigs.getREST_URL_ACCOUNT() + id, Account.class);
-		} else {
-			account = restTemplate.getForObject(ACCOUNT_REST_URL + id, Account.class);
-		}
+		Account account = restTemplate.getForObject(ACCOUNT_REST_URL + id, Account.class);
 		return account;
 	}
 	
 	@Override
 	public List<Account> findAccountsByHolderId(Long id) {
+		String ACCOUNT_REST_URL = restServiceUrl.getRestServiceUrl() + "accounts/";
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Account[]> response;
-		if (myConfigs.getREST_URL_ACCOUNT() != null) {
-			response = restTemplate.getForEntity(myConfigs.getREST_URL_ACCOUNT(), Account[].class);
-		} else {
-			response = restTemplate.getForEntity(ACCOUNT_REST_URL, Account[].class);
-		}
+		ResponseEntity<Account[]> response = restTemplate.getForEntity(ACCOUNT_REST_URL, Account[].class);
 		Account[] accountArray = response.getBody();
 		List<Account> accounts = new ArrayList<Account>();
 		for (int i = 0; i < accountArray.length; i++) {
@@ -53,25 +43,17 @@ public class AccountRestClientImpl implements AccountRestClient {
 	
 	@Override
 	public Account saveAccount(Account account) {
+		String ACCOUNT_REST_URL = restServiceUrl.getRestServiceUrl() + "accounts/";
 		RestTemplate restTemplate = new RestTemplate();
-		Account savedAccount;
-		if (myConfigs.getREST_URL_ACCOUNT() != null) {
-			savedAccount = restTemplate.postForObject(myConfigs.getREST_URL_ACCOUNT() + "save", account, Account.class);
-		} else {
-			savedAccount = restTemplate.postForObject(ACCOUNT_REST_URL + "save", account, Account.class);
-		}
+		Account savedAccount = restTemplate.postForObject(ACCOUNT_REST_URL + "save", account, Account.class);
 		return savedAccount;
 	}
 	
 	@Override
 	public Account updateAccount(AccountUpdateRequest request) {
+		String ACCOUNT_REST_URL = restServiceUrl.getRestServiceUrl() + "accounts/";
 		RestTemplate restTemplate = new RestTemplate();
-		Account account;
-		if (myConfigs.getREST_URL_ACCOUNT() != null) {
-			account = restTemplate.postForObject(myConfigs.getREST_URL_ACCOUNT(), request, Account.class);
-		} else {
-			account = restTemplate.postForObject(ACCOUNT_REST_URL, request, Account.class);
-		}
+		Account account = restTemplate.postForObject(ACCOUNT_REST_URL, request, Account.class);
 		return account;
 	}
 	

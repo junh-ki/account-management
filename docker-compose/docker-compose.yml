@@ -34,26 +34,24 @@ services:
   cashdeposit:
     image: mrki102/cashdeposit-account-management
     container_name: cashdeposit
+    command: --rest.url=${REST_SERVICE_URL}
     restart: always
     ports:
       - "7070:7070"
     networks:
       - monitor_network
-    volumes:
-      - ${DEPOSIT_PROPERTIES_LOCATION}:/config/
     depends_on:
       - restservice
 
   cashtransaction:
     image: mrki102/cashtransaction-account-management
     container_name: cashtransaction
+    command: --rest.url=${REST_SERVICE_URL} --exchange.url=${EXCHANGE_API_URL}
     restart: always
     ports:
       - "9090:9090"
     networks:
       - monitor_network
-    volumes:
-      - ${TRANSACTION_PROPERTIES_LOCATION}:/config/
     depends_on:
       - restservice
 

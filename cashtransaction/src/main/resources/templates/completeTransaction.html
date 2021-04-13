@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Complete Transaction</title>
+</head>
+<body>
+
+<h2>Sender Details</h2>
+<pre>
+<p th:text="'Sender Account ID      : ' + ${account.id}">
+<p th:text="'Sender Account Currency: ' + ${account.currency}">
+<p th:text="'Sender Account Balance : ' + ${account.balance}">
+</pre>
+
+<h2>Complete Transaction</h2>
+<form action="completeTransaction" method="post">
+<pre>
+Recipient Account ID: <input type="number" name="recipientAccountID" step="1"/>
+Transaction Amount  : <input type="number" name="amount" step="0.01"/>
+<input type="hidden" th:attr="name='senderAccountID'" th:value="${account.id}"/>
+<input type="submit" value="Transfer"/>
+</pre>
+</form>
+
+<p th:text="${msg}"></p>
+
+</body>
+</html>

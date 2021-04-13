@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Transaction Confirmation</title>
+</head>
+<body>
+<h2>Transaction Result</h2>
+<pre>
+<p th:text="'Sender Account ID    : ' + ${transaction.senderAccountId}">
+<p th:text="'Send Amount          : ' + ${transaction.sendAmount}">
+<p th:text="'Send Currency        : ' + ${transaction.sendCurrency}">
+<p th:text="'Sender Account Balance After Transaction : ' + ${newbalance}">
+</pre>
+
+<pre>
+<p th:text="'Recipient Account ID: ' + ${transaction.recipientAccountId}">
+<p th:text="'Receive Amount      : ' + ${transaction.receiveAmount}">
+<p th:text="'Receive Currency    : ' + ${transaction.receiveCurrency}">
+</pre>
+</body>
+</html>

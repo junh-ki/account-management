@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Home</title>
+</head>
+<body>
+<h2 th:text="${'Welcome ' + user.firstName + '!'}"></h2>
+
+<form action="displayAccs" method="post">
+<pre>
+Click here to display your accounts
+<input type="hidden" th:attr="name='holderId'" th:value="${user.id}"/>
+<input type="submit" value="Display"/>
+</pre>
+</form>
+
+</body>
+</html>

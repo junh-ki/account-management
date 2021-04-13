@@ -39,6 +39,8 @@ services:
       - "7070:7070"
     networks:
       - monitor_network
+    volumes:
+      - ${DEPOSIT_PROPERTIES_LOCATION}=/config/
     depends_on:
       - restservice
 
@@ -50,6 +52,8 @@ services:
       - "9090:9090"
     networks:
       - monitor_network
+    volumes:
+      - ${TRANSACTION_PROPERTIES_LOCATION}=/config/
     depends_on:
       - restservice
 

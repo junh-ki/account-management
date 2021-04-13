@@ -42,14 +42,14 @@ CREATE TABLE transaction (
   FOREIGN KEY (recipient_account_id) REFERENCES account(id)
 );
 
-SELECT * FROM user
-SELECT * FROM account
-SELECT * FROM deposit
-SELECT * FROM transaction
+SELECT * FROM user;
+SELECT * FROM account;
+SELECT * FROM deposit;
+SELECT * FROM transaction;
 
-DROP TABLE user
-DROP TABLE account
-DROP TABLE deposit
-DROP TABLE transaction
+DROP TABLE user;
+DROP TABLE account;
+DROP TABLE deposit;
+DROP TABLE transaction;
 
-DROP DATABASE account
+DROP DATABASE account;

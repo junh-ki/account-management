@@ -8,5 +8,13 @@
 
 <p th:text="${msg}"></p>
 
+<form action="showUserHome" method="post">
+<pre>
+Click here to go back to User Home
+<input type="hidden" th:attr="name='holderId'" th:value="${holderId}"/>
+<input type="submit" value="User Home"/>
+</pre>
+</form>
+
 </body>
 </html>

@@ -42,6 +42,7 @@ public class DepositController {
 		accountRestClient.updateAccount(accountUpdateRequest);
 		Deposit savedDeposit = depositRestClient.saveDeposit(deposit);
 		modelMap.addAttribute("msg", "Deposit created successfully and the id is " + savedDeposit.getId());
+		modelMap.addAttribute("holderId", account.getHolderId());
         return "depositConfirmation";
 	}
 	

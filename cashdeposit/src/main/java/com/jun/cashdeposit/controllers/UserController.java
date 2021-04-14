@@ -35,13 +35,20 @@ public class UserController {
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap modelMap) {
-        User user = userRestClient.findUser(email);
+        User user = userRestClient.findUserByEmail(email);
         if (user.getPassword().equals(password)) {
         	modelMap.addAttribute("user", user);
             return "userhome";
         }
         modelMap.addAttribute("msg", "Invalid user name or password. Please try again.");
         return "login";
+    }
+    
+    @RequestMapping(value="/showUserHome", method=RequestMethod.POST)
+    public String showUserHome(@ModelAttribute("holderId") Long userId, ModelMap modelMap) {
+    	User user = userRestClient.findUserById(userId);
+    	modelMap.addAttribute("user", user);
+    	return "userhome";
     }
     
 }

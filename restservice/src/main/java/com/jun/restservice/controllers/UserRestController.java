@@ -18,8 +18,13 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/users/{email}")
-	public User findAccount(@PathVariable("email") String email) {
+	@GetMapping("/users/{id}")
+	public User findUserById(@PathVariable("id") Long id) {
+		return userService.findUserById(id);
+	}
+	
+	@GetMapping("/user/{email}")
+	public User findUserByEmail(@PathVariable("email") String email) {
 		return userService.findUserByEmail(email);
 	}
 	

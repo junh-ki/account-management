@@ -1,5 +1,7 @@
 package com.jun.restservice.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class DepositServiceImpl implements DepositService {
 	@Override
 	public Deposit findDepositById(Long id) {
 		return depositRepository.findById(id).get();
+	}
+	
+	@Override
+	public List<Deposit> getAllDeposits() {
+		return depositRepository.findAll();
 	}
 	
 	@Override

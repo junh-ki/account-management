@@ -1,5 +1,7 @@
 package com.jun.restservice.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,11 @@ public class UserRestController {
 	@GetMapping("/user/{email}")
 	public User findUserByEmail(@PathVariable("email") String email) {
 		return userService.findUserByEmail(email);
+	}
+	
+	@GetMapping("/users")
+	public List<User> getAllUsers() {
+		return userService.getAllUsers();
 	}
 	
 	@PostMapping("/users")

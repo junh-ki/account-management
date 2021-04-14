@@ -55,6 +55,7 @@ public class TransactionController {
 			AccountUpdateRequest recipientUpdateRequest = new AccountUpdateRequest();
 			if (senderCurrency.compareTo(recipientCurrency) != 0) {
 				Double euroBasedUsdExchange = exchangeRateRestClient.getEuroBasedUsdExchangeRate();
+				modelMap.addAttribute("eurusdrate", euroBasedUsdExchange);
 				if (senderCurrency.compareTo("EUR") == 0) {
 					amount = amount * euroBasedUsdExchange;
 				} else {

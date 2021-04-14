@@ -11,12 +11,10 @@
 <p th:text="'Send Amount          : ' + ${transaction.sendAmount}">
 <p th:text="'Send Currency        : ' + ${transaction.sendCurrency}">
 <p th:text="'Sender Account Balance After Transaction : ' + ${newbalance}">
-</pre>
-
-<pre>
-<p th:text="'Recipient Account ID: ' + ${transaction.recipientAccountId}">
-<p th:text="'Receive Amount      : ' + ${transaction.receiveAmount}">
-<p th:text="'Receive Currency    : ' + ${transaction.receiveCurrency}">
+<p th:text="'EUR-USD Exchange Rate: ' + ${eurusdrate}">
+<p th:text="'Recipient Account ID : ' + ${transaction.recipientAccountId}">
+<p th:text="'Receive Amount       : ' + ${transaction.receiveAmount}">
+<p th:text="'Receive Currency     : ' + ${transaction.receiveCurrency}">
 </pre>
 
 <form action="showUserHome" method="post">

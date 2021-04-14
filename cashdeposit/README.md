@@ -91,8 +91,7 @@ public Deposit saveDeposit(Deposit deposit) {
 
 ## Prerequisites
 
-* Java (openjdk:11)
-* Maven (maven:3.8.1-jdk-11)
+* Docker
 * Docker Hub Account
 
 ## Step 1: Login

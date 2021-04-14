@@ -4,6 +4,7 @@ import com.jun.cashtransaction.integration.dto.User;
 
 public interface UserRestClient {
 
-	public User findUser(String email);
+	public User findUserById(Long id);
+	public User findUserByEmail(String email);
 	
 }

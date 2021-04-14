@@ -13,8 +13,16 @@ public class UserRestClientImpl implements UserRestClient {
 	private RestServiceUrl restServiceUrl;
 	
 	@Override
-	public User findUser(String email) {
+	public User findUserById(Long id) {
 		String USER_REST_URL = restServiceUrl.getRestServiceUrl() + "users/";
+		RestTemplate restTemplate = new RestTemplate();
+		User user = restTemplate.getForObject(USER_REST_URL + id, User.class);
+		return user;
+	}
+	
+	@Override
+	public User findUserByEmail(String email) {
+		String USER_REST_URL = restServiceUrl.getRestServiceUrl() + "user/";
 		RestTemplate restTemplate = new RestTemplate();
 		User user = restTemplate.getForObject(USER_REST_URL + email, User.class);
 		return user;

@@ -74,6 +74,7 @@ public class TransactionController {
 			// 3. ModelMap
 			modelMap.addAttribute("transaction", transaction);
 			modelMap.addAttribute("newbalance", newSenderBalance);
+			modelMap.addAttribute("holderId", senderAccount.getHolderId());
 			return "transactionConfirmation";
 		} else {
 			String msg = "Your balance is less than the transaction amount of " + amount + " " + senderCurrency;

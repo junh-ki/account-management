@@ -7,12 +7,21 @@ This runs on port `8080`.
 
 ### 1. UserRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/UserRestController.java))
 
-- **[GET]** *http://localhost:8080/restservice/users/{email}*
+- **[GET]** *http://localhost:8080/restservice/users/{id}*
+
+> Finds a registered User by User ID number / Returns a User JSON dictionary
+
+```Java
+@GetMapping("/users/{id}")
+public User findUser(@PathVariable("id") Long id)
+```
+
+- **[GET]** *http://localhost:8080/restservice/user/{email}*
 
 > Finds a registered User by User ID (email) / Returns a User JSON dictionary
 
 ```Java
-@GetMapping("/users/{email}")
+@GetMapping("/user/{email}")
 public User findUser(@PathVariable("email") String email)
 ```
 

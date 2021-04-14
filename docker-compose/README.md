@@ -69,7 +69,7 @@ Take all the services down but do not terminate volumes.
 $ docker-compose down
 ~~~
 
-- Option A (Without data persist)
+- Option B (Without data persistence)
 
 Take all the services down as well as volumes.
 

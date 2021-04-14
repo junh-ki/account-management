@@ -25,6 +25,15 @@ public User findUserById(@PathVariable("id") Long id)
 public User findUserByEmail(@PathVariable("email") String email)
 ```
 
+- **[GET]** *http://localhost:8080/restservice/users*
+
+> Gets all registered Users / Returns a list of User JSON dictionaries
+
+```Java
+@GetMapping("/users")
+public List<User> getAllUsers()
+```
+
 - **[POST]** *http://localhost:8080/restservice/users*
 
 > Adds a new User with the passed User JSON dictionary / Returns the saved User JSON dictionary
@@ -73,6 +82,24 @@ public Account saveAccount(@RequestBody Account account)
 ```
 
 ### 3. DepositRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/DepositRestController.java))
+
+- **[GET]** *http://localhost:8080/restservice/deposits/{id}*
+
+> Finds a registered Deposit by Deposit ID number / Returns a Deposit JSON dictionary
+
+```Java
+@GetMapping("/deposits/{id}")
+public Deposit findDepositById(@PathVariable("id") Long id)
+```
+
+- **[GET]** *http://localhost:8080/restservice/deposits*
+
+> Gets all registered Deposits / Returns a list of Deposit JSON dictionaries
+
+```Java
+@GetMapping("/deposits")
+public List<Deposit> getAllDeposits()
+```
 
 - **[POST]** *http://localhost:8080/restservice/deposits*
 

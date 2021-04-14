@@ -13,7 +13,7 @@ This runs on port `8080`.
 
 ```Java
 @GetMapping("/users/{id}")
-public User findUser(@PathVariable("id") Long id)
+public User findUserById(@PathVariable("id") Long id)
 ```
 
 - **[GET]** *http://localhost:8080/restservice/user/{email}*
@@ -22,7 +22,7 @@ public User findUser(@PathVariable("id") Long id)
 
 ```Java
 @GetMapping("/user/{email}")
-public User findUser(@PathVariable("email") String email)
+public User findUserByEmail(@PathVariable("email") String email)
 ```
 
 - **[POST]** *http://localhost:8080/restservice/users*

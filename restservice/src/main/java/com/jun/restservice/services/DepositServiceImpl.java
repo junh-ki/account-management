@@ -13,6 +13,11 @@ public class DepositServiceImpl implements DepositService {
 	private DepositRepository depositRepository;
 	
 	@Override
+	public Deposit findDepositById(Long id) {
+		return depositRepository.findById(id).get();
+	}
+	
+	@Override
 	public Deposit saveDeposit(Deposit deposit) {
 		return depositRepository.save(deposit);
 	}

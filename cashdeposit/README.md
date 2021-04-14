@@ -8,12 +8,22 @@ This runs on port `7070`.
 
 ### 1. UserRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashdeposit/src/main/java/com/jun/cashdeposit/integration/UserRestClientImpl.java))
 
-- **[GET]** *http://restservice:8080/restservice/users/{email}*
+- **[GET]** *http://restservice:8080/restservice/users/{id}*
+
+> Finds a registered User by User ID number / Returns a User instance
+
+```Java
+public User findUserById(Long id) {
+    ...
+    User user = restTemplate.getForObject(USER_REST_URL + id, User.class);
+```
+
+- **[GET]** *http://restservice:8080/restservice/user/{email}*
 
 > Finds a registered User by User ID (email) / Returns a User instance
 
 ```Java
-public User findUser(String email) {
+public User findUserByEmail(String email) {
     ...
     User user = restTemplate.getForObject(USER_REST_URL + email, User.class);
 ```

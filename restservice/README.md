@@ -4,7 +4,7 @@ This application, `restservice`, is to support its client applications (`cashdep
 
 ## Supported REST APIs
 
-1. UserRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/UserRestController.java))
+### 1. UserRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/UserRestController.java))
 
 - **[GET]** *http://localhost:8080/restservice/users/{email}*
 
@@ -24,7 +24,7 @@ public User findUser(@PathVariable("email") String email)
 public User saveUser(@RequestBody User user)
 ```
 
-2. AccountRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/AccountRestController.java))
+### 2. AccountRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/AccountRestController.java))
 
 - **[GET]** *http://localhost:8080/restservice/accounts/{id}*
 
@@ -62,7 +62,7 @@ public Account updateAccount(@RequestBody AccountUpdateRequest request)
 public Account saveAccount(@RequestBody Account account)
 ```
 
-3. DepositRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/DepositRestController.java))
+### 3. DepositRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/DepositRestController.java))
 
 - **[POST]** *http://localhost:8080/restservice/deposits*
 
@@ -73,7 +73,7 @@ public Account saveAccount(@RequestBody Account account)
 public Deposit saveDeposit(@RequestBody Deposit deposit)
 ```
 
-4. TransactionRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/TransactionRestController.java))
+### 4. TransactionRestController ([Implementation](https://github.com/junh-ki/account-management/blob/main/restservice/src/main/java/com/jun/restservice/controllers/TransactionRestController.java))
 
 - **[GET]** *http://localhost:8080/restservice/transactions/{id}*
 

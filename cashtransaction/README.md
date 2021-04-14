@@ -1,12 +1,12 @@
-# Cash Deposit Application
+# Cash Transaction Application
 
-This application, `cashdeposit`, is a REST client application that interacts with users for: User Registration, Account(s) Creation, Account(s) Overview, and Cash Deposit.
-This runs on port `7070`.
-* After deployment, you can use this app via '*http://localhost:7070/cashdeposit/*'.
+This application, `cashtransaction`, is a REST client application that interacts with users for: Account(s) Overview and Cash Transaction using a third-party API for getting currency exchange rate. 
+This runs on port `9090`.
+* After deployment, you can use this app via '*http://localhost:9090/cashtransaction/*'.
 
 ## Supported REST Clients
 
-### 1. UserRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashdeposit/src/main/java/com/jun/cashdeposit/integration/UserRestClientImpl.java))
+### 1. UserRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashtransaction/src/main/java/com/jun/cashtransaction/integration/UserRestClientImpl.java))
 
 - **[GET]** *http://restservice:8080/restservice/users/{email}*
 
@@ -18,17 +18,7 @@ public User findUser(String email) {
     User user = restTemplate.getForObject(USER_REST_URL + email, User.class);
 ```
 
-- **[POST]** *http://restservice:8080/restservice/users/*
-
-> Adds a new User with the passed User instance / Returns the saved User instance
-
-```Java
-public User saveUser(User user)
-    ...
-    User savedUser = restTemplate.postForObject(USER_REST_URL, user, User.class);
-```
-
-### 2. AccountRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashdeposit/src/main/java/com/jun/cashdeposit/integration/AccountRestClientImpl.java))
+### 2. AccountRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashtransaction/src/main/java/com/jun/cashtransaction/integration/AccountRestClientImpl.java))
 
 - **[GET]** *http://restservice:8080/restservice/accounts/{id}*
 
@@ -67,27 +57,32 @@ public Account updateAccount(AccountUpdateRequest request) {
     Account account = restTemplate.postForObject(ACCOUNT_REST_URL, request, Account.class);
 ```
 
-- **[POST]** *http://restservice:8080/restservice/accounts/save*
+### 3. TransactionRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashtransaction/src/main/java/com/jun/cashtransaction/integration/TransactionRestClientImpl.java))
 
-> Adds a new Account with the passed Account instance / Returns the saved Account instance
+- **[POST]** *http://restservice:8080/restservice/transactions*
 
-```Java
-public Account saveAccount(Account account) {
-    ...
-    Account savedAccount = restTemplate.postForObject(ACCOUNT_REST_URL + "save", account, Account.class);
-```
-
-### 3. DepositRestClient ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashdeposit/src/main/java/com/jun/cashdeposit/integration/DepositRestClientImpl.java))
-
-- **[POST]** *http://restservice:8080/restservice/deposits*
-
-> Adds a new Deposit with the passed Deposit instance / Returns the saved Deposit instance
+> Adds a new Transaction with the passed Transaction instance / Returns the saved Transaction instance
 
 ```Java
-public Deposit saveDeposit(Deposit deposit) {
+public Transaction saveTransaction(Transaction transaction) {
     ...
-    Deposit savedDeposit = restTemplate.postForObject(DEPOSIT_REST_URL, deposit, Deposit.class);
+    Transaction savedTransaction = restTemplate.postForObject(TRANSACTION_REST_URL, transaction, Transaction.class);
 ```
+
+### 4. ExchangeRateRestClientImpl ([Implementation](https://github.com/junh-ki/account-management/blob/main/cashtransaction/src/main/java/com/jun/cashtransaction/integration/ExchangeRateRestClientImpl.java))
+
+- **[GET]** *http://api.exchangeratesapi.io/v1/latest?access_key=35bbcdd96e0d471a96ab0a75f554cbf9*
+
+> Gets a Euro-based currency exchange rate JSON dictionary via **a thrid-party API** for Cash Transaction / This API url can be dynamically allocated using the `.env` file
+
+```Java
+public JSONObject getEuroBasedExchangeRates() {
+    ...
+    String exchangeRates = restTemplate.getForObject(restServiceUrl.getExchangeApiUrl(), String.class);
+```
+
+Because the access key, `35bbcdd96e0d471a96ab0a75f554cbf9`, is a free-plan access key, the exchange rate gets updated not in real-time but on a daily basis. 
+You can change this url with a new access key once the plan is upgraded.
 
 ## Prerequisites
 
@@ -105,10 +100,10 @@ $ docker login --username=${DOCKER_HUB_USERNAME} --password=${DOCKER_HUB_PASSWOR
 
 ## Step 2: Create Docker Image
 
-To build the app and create a Docker image, navigate to `account-management/cashdeposit/` and run:
+To build the app and create a Docker image, navigate to `account-management/cashtransaction/` and run:
 
 ~~~
-$ docker build -t ${DOCKER_HUB_USERNAME}/cashdeposit-account-management .
+$ docker build -t ${DOCKER_HUB_USERNAME}/cashtransaction-account-management .
 ~~~
 
 ## Step 3: Push Docker Image
@@ -116,7 +111,7 @@ $ docker build -t ${DOCKER_HUB_USERNAME}/cashdeposit-account-management .
 To push the created Docker image to your Docker Hub registry, run:
 
 ~~~
-$ docker push ${DOCKER_HUB_USERNAME}/cashdeposit-account-management
+$ docker push ${DOCKER_HUB_USERNAME}/cashtransaction-account-management
 ~~~
 
 ## Deployment

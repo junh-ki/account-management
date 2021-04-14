@@ -1,6 +1,7 @@
 # REST Service Application
 
-This application, `restservice`, is to support its client applications (`cashdeposit` and `cashtransaction`) with REST APIs while interacting directly with the datasource, `mysql`. This runs on port `8080`.
+This application, `restservice`, is to support its client applications (`cashdeposit` and `cashtransaction`) with REST APIs while interacting directly with the datasource, `mysql`.
+This runs on port `8080`.
 
 ## Supported REST APIs
 
@@ -134,4 +135,4 @@ $ docker push ${DOCKER_HUB_USERNAME}/restservice-account-management
 
 ## Deployment
 
-Since it has a dependency on the MySQL micro-service, it should be deployed along with it. In order to deploy the whole package of micro-services for running the account management system, please click [here](https://github.com/junh-ki/account-management/tree/main/docker-compose) to refer to the Docker Compose deployment.
+Since it has a dependency on the `mysql` micro-service, it should be deployed along with it. In order to deploy the whole package of micro-services for running the account management system, please click [here](https://github.com/junh-ki/account-management/tree/main/docker-compose) to refer to the Docker Compose deployment.

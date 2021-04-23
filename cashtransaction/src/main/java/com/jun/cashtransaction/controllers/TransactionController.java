@@ -2,6 +2,7 @@ package com.jun.cashtransaction.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ public class TransactionController {
 	}
 	
 	@RequestMapping("/completeTransaction")
+	@Transactional
 	public String completeTransaction(@RequestParam("senderAccountID") Long senderAccountID, @RequestParam("recipientAccountID") Long recipientAccountID,
 			@RequestParam("amount") Double amount, ModelMap modelMap) {
 		Account senderAccount = accountRestClient.findAccountById(senderAccountID);
